@@ -1,49 +1,52 @@
 package main
 
 import (
+	"encoding/csv"
 	"log"
 	"os"
+	"path/filepath"
 )
 
-//type DeletedFile struct {
-//	CurrentFileName  string // 当前文件名, MD5
-//	OriginalFileName string // 原始文件名
-//	ZipFilePath      string // 所属ZIP文件路径
-//}
-//
-//// 记录被删除
-//func recordDeletedFiles(df <-chan *DeletedFile, done chan<- struct{}) {
-//	defer func() {
-//		done <- struct{}{}
-//	}()
-//
-//	wd, err := os.Getwd()
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//
-//	cf, err := os.OpenFile(filepath.Join(wd, "deleted_files", "files.csv"), os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//
-//	w := csv.NewWriter(cf)
-//	for {
-//		select {
-//		case d, ok := <-df:
-//			if ok == false {
-//				w.Flush()
-//				return
-//			}
-//
-//			line := []string{d.CurrentFileName, d.OriginalFileName, d.ZipFilePath}
-//			err := w.Write(line)
-//			if err != nil {
-//				log.Fatal(err)
-//			}
-//		}
-//	}
-//}
+type DeletedFile struct {
+	CurrentFileName  string // 当前文件名, MD5
+	OriginalFileName string // 原始文件名
+	ZipFilePath      string // 所属ZIP文件路径
+}
+
+// 记录被删除
+func recordDeletedFiles(df <-chan *DeletedFile, done chan<- struct{}) {
+	defer func() {
+		done <- struct{}{}
+	}()
+
+	wd, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	cf, err := os.OpenFile(filepath.Join(wd, "deleted_files", "files.csv"), os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	w := csv.NewWriter(cf)
+	for {
+		select {
+		case d, ok := <-df:
+			if ok == false {
+				w.Flush()
+				return
+			}
+
+			line := []string{d.CurrentFileName, d.OriginalFileName, d.ZipFilePath}
+			err := w.Write(line)
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
+	}
+}
+
 //
 //func readAdSamplesCRC32() (*gset.Set, error) {
 //	var adListCRC32 = gset.New(true)

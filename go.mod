@@ -4,7 +4,6 @@ go 1.19
 
 require (
 	github.com/corona10/goimagehash v1.1.0
-	github.com/gogf/gf v1.16.9
 	github.com/google/uuid v1.3.0
 )
 
