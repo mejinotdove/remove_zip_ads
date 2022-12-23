@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/csv"
 	"log"
+	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"path/filepath"
 )
@@ -189,6 +191,10 @@ func recordDeletedFiles(df <-chan *DeletedFile, done chan<- struct{}) {
 //}
 
 func main() {
+	go func() {
+		http.ListenAndServe("0.0.0.0:8899", nil)
+	}()
+
 	var targetPath string
 	if len(os.Args) < 2 {
 		t, err := os.Getwd()

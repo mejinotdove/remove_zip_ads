@@ -1,3 +1,5 @@
+github.com/EDDYCJY/gsema v0.0.0-20190120044130-7f6a61b75219 h1:TCY1aa2IQInhAIiumrIkZfUmk2+q0OjspCQutj+Kjng=
+github.com/EDDYCJY/gsema v0.0.0-20190120044130-7f6a61b75219/go.mod h1:wd3egVZ3+ISuA+PWDRLbjNRYZUQwwWXCTcXQrfZAOmQ=
 github.com/corona10/goimagehash v1.1.0 h1:teNMX/1e+Wn/AYSbLHX8mj+mF9r60R1kBeqE9MkoYwI=
 github.com/corona10/goimagehash v1.1.0/go.mod h1:VkvE0mLn84L4aF8vCb6mafVajEb6QYMHl2ZJLn0mOGI=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
